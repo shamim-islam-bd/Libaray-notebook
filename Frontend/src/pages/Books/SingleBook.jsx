@@ -1,18 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useAlert } from "react-alert";
 import { BsArrowDownCircle } from "react-icons/bs";
 import Rating2 from "react-rating";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
 
+import BookNote from "./TextArea";
+
 export default function SingleBook() {
   const { id } = useParams();
-  console.log(id);
 
   const [book, setBook] = useState([]);
+  const [description, setDescription] = useState("");
+
+  const saveNote = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("description", description);
+
+    // await dispatch(createProduct(formData));
+    // navigate("/dashboard");
+  };
 
   useEffect(() => {
     axios
@@ -20,17 +29,16 @@ export default function SingleBook() {
       .then((res) => {
         res.data?.map((book) => (book?._id === id ? setBook(book) : null));
         // console.log(res.data);
-        // setBooks(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
 
-  console.log(book);
+  // console.log(book);
 
   return (
-    <div>
+    <div className="container">
       <div className="row mt-4">
         <div className="col-md-7 col-sm-6">
           <figure class="snip1418">
@@ -71,7 +79,7 @@ export default function SingleBook() {
           </figure>
         </div>
         <div className="col-md-5">
-          <h4>Note Book</h4>
+          <BookNote />
         </div>
       </div>
     </div>
