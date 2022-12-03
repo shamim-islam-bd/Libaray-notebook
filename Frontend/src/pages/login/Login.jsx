@@ -34,7 +34,8 @@ export default function Login() {
         alert.success("You are successfully logged in");
       })
       .catch((error) => {
-        setErrorMessage(error);
+        alert.error("Invalid email or password");
+        // setErrorMessage(error);
       });
   };
 

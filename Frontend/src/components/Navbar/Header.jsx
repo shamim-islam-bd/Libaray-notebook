@@ -34,9 +34,9 @@ export default function Header() {
       <Navbar
         collapseOnSelect
         expand="lg"
-        bg="dark"
+        // bg="dark"
         variant="dark"
-        // className="bg-color"
+        className="bg-color"
       >
         <Container>
           <Navbar.Brand href="/">Libaray</Navbar.Brand>
