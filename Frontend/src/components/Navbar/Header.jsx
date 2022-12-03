@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Container from "react-bootstrap/Container";
@@ -14,27 +13,21 @@ export default function Header() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // get item from local storage
-    const token = localStorage.getItem("token");
+    // get user from local storage and parse it then set it to user
     if (token) {
-      // get user data from token
-      const user = JSON.parse(atob(token.split(".")[1]));
-      const userId = user.id;
-
-      axios
-        .get("/api/users/me")
-        .then((res) => {
-          console.log(res.data);
-          // compare user id from token with user id from local storage
-          if (res.data.id === userId) {
-            setUser(res.data);
-          }
-        })
-        .catch((error) => {
-          alert.error("Error fetching user");
-        });
+      const userLocal = localStorage.getItem("user");
+      const user = JSON.parse(userLocal);
+      // console.log(user.user);
+      setUser(user.user);
     }
-  }, []);
+  }, [token]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    alert.success("You are successfully logged out");
+  };
 
   return (
     <div className="header">
@@ -63,11 +56,12 @@ export default function Header() {
               </NavDropdown>
             </Nav>
             <Nav>
-              <p>{user?.name}</p>
               {token ? (
-                <Nav.Link as={Link} to="/logout">
-                  Logout
-                </Nav.Link>
+                <div className="flex">
+                  <p className="user">{user?.name}</p>
+                  <img className="userpic" src={user?.photo} alt="" srcset="" />
+                  <Nav.Link onClick={logout}>Logout</Nav.Link>
+                </div>
               ) : (
                 <Nav.Link as={Link} to="/signin">
                   Login

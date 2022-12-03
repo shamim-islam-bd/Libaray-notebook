@@ -62,7 +62,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // Check if user exists
   const user = await User.findOne({ email });
-
+    
   if (!user) {
     res.status(400);
     throw new Error("User not found, please signup");
@@ -118,6 +118,16 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Successfully Logged Out" });
 });
 
+// Get User Data
+const getAllUser = asyncHandler(async (req, res) => {
+  const users = await User.find();
+  if (users) {
+    res.status(200).json({ users: users });
+  } else {
+    res.status(400);
+    throw new Error("Users Not Found");
+  }
+});
 // Get User Data
 const getUser = asyncHandler(async (req, res) => {
 
@@ -304,6 +314,7 @@ module.exports = {
   loginUser,
   logout,
   getUser,
+  getAllUser,
   loginStatus,
   updateUser,
   changePassword,

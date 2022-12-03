@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken");
 exports.isAuthenticated =  asyncHandler(async (req, res, next) => {
   try {
       // bearer token split from localstorage token.
-      // const token = req.headers.authorization.split('token=')[1];
-      // console.log('token From isAuthenticated: ', token);
+      const token = req.headers.cookie.split('token=')[1];
+    //   console.log('token From isAuthenticated: ', req.headers.cookie.split('token=')[1]);
       // console.log('From isAuthenticated: ', req.cookies);
 
-      const { token } = req.cookies;
+    //   const { token } = req.cookies;
+    // console.log(token);
+
       if(token === 'undefined') {
           throw new Error('Unauthorized! No token provided || 401');
       }

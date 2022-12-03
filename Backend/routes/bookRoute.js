@@ -5,9 +5,9 @@ const {createBook, getBooks,getBook, deleteBook, updateBook} = require("../contr
 const { isAuthenticated } = require("../middleWare/authMiddleware");
 const { upload } = require("../utils/fileUpload");
 
+router.get("/", getBooks);
 router.post("/addBook", isAuthenticated, upload.single("image"), createBook);
 router.patch("/update/:id", isAuthenticated, upload.single("image"), updateBook);
-router.get("/getBooks", isAuthenticated, getBooks);
 router.get("/singleBook/:id", isAuthenticated, getBook);
 router.delete("/delete/:id", isAuthenticated, deleteBook);
 

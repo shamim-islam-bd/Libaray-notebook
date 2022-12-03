@@ -17,14 +17,14 @@ const options = {
 // import "@fontawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-axios.defaults.headers.common["Set-Cookie"] =
-  document.cookie.split("token=")[1];
+// axios.defaults.headers.common["Set-Cookie"] =
+//   document.cookie.split("token=")[1];
 // axios.defaults.withCredentials = true;
 
 // axios.defaults.headers.common["Authorization"] = `Bearer ${document.cookie}`;
-// axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
-//   "token"
-// )}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 
 axios.defaults.baseURL = "http://localhost:8000";
 

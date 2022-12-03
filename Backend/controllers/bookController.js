@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { fileSizeFormatter } = require("../utils/fileUpload");
 const cloudinary = require("cloudinary").v2;
-const Books = require("../models/productModel");
+const Books = require("../models/bookModel");
 
 // Create Book
 const createBook = asyncHandler(async (req, res) => {
@@ -57,7 +57,8 @@ const createBook = asyncHandler(async (req, res) => {
 
 // Get all Books
 const getBooks = asyncHandler(async (req, res) => {
-  const books = await Books.find({ user: req.user.id }).sort("-createdAt");
+  // const books = await Books.find({ user: req.user.id }).sort("-createdAt");
+  const books = await Books.find();
   res.status(200).json(books);
 });
 

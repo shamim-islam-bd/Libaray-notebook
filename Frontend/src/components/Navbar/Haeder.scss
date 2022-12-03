@@ -2,11 +2,27 @@
 //     background-color: #fd3d6b;
 // }
 
-.header{
-    .sign{
-        color: #fff;
-        margin: 10px;
-        text-decoration: none;
-
-    }
+.header {
+  .sign {
+    color: #fff;
+    margin: 10px;
+    text-decoration: none;
+  }
+  .user {
+    color: rgb(244, 162, 154);
+    margin: 3px;
+    text-decoration: none;
+  }
+  .userpic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 10px;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+  }
 }

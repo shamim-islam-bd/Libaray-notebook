@@ -21,11 +21,17 @@ export default function Login() {
     await axios
       .post("/api/users/login", userdata)
       .then((res) => {
-        alert.success("You are successfully logged in");
         const token = res.data.token;
+        const user = res.data.user;
+        const strnUser = JSON.stringify({ user });
+        // console.log("strng: ", strnUser);
+
+        // store token and user in local storage
+        localStorage.setItem("user", strnUser);
         localStorage.setItem("token", token);
 
-        navigate("/home");
+        navigate("/");
+        alert.success("You are successfully logged in");
       })
       .catch((error) => {
         setErrorMessage(error);
