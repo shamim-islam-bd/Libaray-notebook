@@ -18,7 +18,7 @@ export default function Header() {
       const userLocal = localStorage.getItem("user");
       const user = JSON.parse(userLocal);
       // console.log(user.user);
-      setUser(user.user);
+      setUser(user?.user);
     }
   }, [token]);
 
@@ -34,7 +34,6 @@ export default function Header() {
       <Navbar
         collapseOnSelect
         expand="lg"
-        // bg="dark"
         variant="dark"
         className="bg-color"
       >
@@ -44,7 +43,7 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Menu</Nav.Link>
+              <Nav.Link href="#pricing">Books</Nav.Link>
               <NavDropdown title="Jonra" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">
                   Self-development

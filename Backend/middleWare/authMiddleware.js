@@ -43,3 +43,23 @@ exports.isAuthenticated =  asyncHandler(async (req, res, next) => {
       })
   }
 });
+
+
+// cheack role based is authorized or not.
+exports.authorizeRoles = (...roles) => { 
+  const rolesArray = [...roles];
+  try {
+      return (req, res, next) => { 
+          const userRole = req.user.role;
+          const result = rolesArray.map(role => userRole.includes(role)).find(item => item === true);
+
+          if(!result) return res.status(401).json({
+              message: `${req.user.role} cann't authorized to access this route.`
+          })
+          next();
+      }
+      
+  } catch (error) {
+      res.status(404).json({error: error.message})
+  }
+}

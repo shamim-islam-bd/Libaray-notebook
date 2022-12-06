@@ -48,6 +48,11 @@ const BooksSchema = mongoose.Schema(
       type: Object,
       default: {},
     },
+   BookDocument : {
+    type : Object,
+    default : {},
+    ref : "Document"
+   },
   },
   {
     timestamps: true,

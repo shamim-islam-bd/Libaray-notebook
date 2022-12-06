@@ -27,9 +27,8 @@ export default function Books() {
   return (
     <div>
       <div className="container pt-5 pb-5">
-        <div className="row">
-          <h4 className="text">#Feathers Books {books.length}</h4>
-        </div>
+        <h4 className="text">#Feathers Books</h4>
+
         <div className="row">
           {books.length > 0
             ? books?.map((book) => (
@@ -40,10 +39,7 @@ export default function Books() {
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdVVX7wQNYzk06uL-gJKmALyTxoJqnUKlBZg&usqp=CAU"
                       alt="sample85"
                     />
-                    <div class="add-to-cart">
-                      <i class="ion-android-add"></i>
-                      <span>Add to Cart</span>
-                    </div>
+
                     <figcaption>
                       <div className="d-flex justify-content-between">
                         <h3>{book?.name}</h3>
@@ -51,12 +47,14 @@ export default function Books() {
                           <BsArrowDownCircle />
                         </span>
                       </div>
-                      <p>{
-                        book?.description?.length > 60
+                      <p>
+                        {book?.description?.length > 60
                           ? book?.description?.slice(0, 60) + "..."
-                          : book?.description
-                      }</p>
+                          : book?.description}
+                      </p>
                       <div class="price">${book?.price}</div>
+
+                      {/* rating start */}
                       <div className="rating">
                         <Rating2
                           readonly={true}
@@ -70,13 +68,15 @@ export default function Books() {
                           }
                         />
                       </div>
+                      {/* rating end */}
+
                       <div className="d-flex justify-content-between">
-                        <Link to={`/readmore/${book?._id}`} className="blog-btn">
+                        <Link
+                          to={`/documents/${book?._id}`}
+                          className="blog-btn"
+                        >
                           Read More
                         </Link>
-                        {/* <Link to="/note" className="blog-btn">
-                          Note
-                        </Link> */}
                       </div>
                     </figcaption>
                   </figure>
