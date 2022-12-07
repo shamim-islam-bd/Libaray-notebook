@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { BsArrowDownCircle } from "react-icons/bs";
 import Rating2 from "react-rating";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
 import "./Books.css";
 
 export default function Books() {
+  const { id: documentId } = useParams();
+  console.log(documentId);
+
   const alert = useAlert();
   const [books, setBooks] = useState([]);
 
@@ -24,6 +27,11 @@ export default function Books() {
       });
   }, []);
 
+  // geting user id from localstorage bcz this user only edit his documents others can't access his documents.
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.user?._id;
+  console.log(userId);
+
   return (
     <div>
       <div className="container pt-5 pb-5">
@@ -33,7 +41,7 @@ export default function Books() {
           {books.length > 0
             ? books?.map((book) => (
                 <div className="col-md-4 col-sm-6">
-                  {console.log(book)}
+                  {/* {console.log(book)} */}
                   <figure class="snip1418">
                     <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdVVX7wQNYzk06uL-gJKmALyTxoJqnUKlBZg&usqp=CAU"
@@ -71,10 +79,7 @@ export default function Books() {
                       {/* rating end */}
 
                       <div className="d-flex justify-content-between">
-                        <Link
-                          to={`/documents/${book?._id}`}
-                          className="blog-btn"
-                        >
+                        <Link to={`/documents/${userId}`} className="blog-btn">
                           Read More
                         </Link>
                       </div>

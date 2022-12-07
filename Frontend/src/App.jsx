@@ -12,9 +12,18 @@ import Login from "./pages/login/Login";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup/Signup";
 // import Home from "./pages/Home/Home";
-import { v4 as uuid } from 'uuid';
+// import {useParams} from 'react-router-dom'
+import { v4 as uuid } from "uuid";
 
 function App() {
+  // const { id: documentId } = useParams();
+  // console.log(documentId);
+
+  // geting user id from localstorage
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const userId = user?.user?._id;
+  // console.log(userId);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -26,7 +35,7 @@ function App() {
           <Route path="/register" element={<Signup />} />
           <Route path="/documents/:id" element={<TextEditor />} />
           <Route
-            path="/document"
+            path="/"
             element={<Navigate replace to={`/documents/${uuid()}`} />}
           />
 
