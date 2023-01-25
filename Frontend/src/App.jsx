@@ -6,7 +6,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Admin from "./Dashboard/Admin/Admin";
 import Dashboard from "./Dashboard/Dashboard/Dashboard";
 import Managebook from "./Dashboard/Managebook/Managebook";
-import SingleBook from "./pages/Books/SingleBook";
+// import SingleBook from "./pages/Books/SingleBook";
 import TextEditor from "./pages/Books/TextEditor";
 import Login from "./pages/login/Login";
 import Main from "./pages/Main";
@@ -14,6 +14,9 @@ import Signup from "./pages/Signup/Signup";
 // import Home from "./pages/Home/Home";
 // import {useParams} from 'react-router-dom'
 import { v4 as uuid } from "uuid";
+import AddBook from "./Dashboard/AddBook/AddBook";
+import NotFound from "./pages/NotFound/NotFound";
+import DashboardMain from "./Dashboard/Dashboard/DashboardMain";
 
 function App() {
   // const { id: documentId } = useParams();
@@ -30,7 +33,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/readmore/:id" element={<SingleBook />} />
+          {/* <Route path="/readmore/:id" element={<SingleBook />} /> */}
           <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/documents/:id" element={<TextEditor />} />
@@ -40,17 +43,36 @@ function App() {
           />
 
           <Route
-            path="/admin"
+            path="/dashboard"
             element={
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
             }
           >
-            <Route index path="" element={<Admin />} />
-            <Route path="managebook" element={<Managebook />} />
+            <Route index element={<DashboardMain />} />
+            <Route path="admin" element={<Admin />} />
+            <Route path="manage-book" element={<Managebook />} />
+            <Route path="add-book" element={<AddBook />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+
+        {/* <Routes>
+          <Route 
+          path="/dashboard"
+          element={
+          <PrivateRoute>
+             <Dashboard />
+           </PrivateRoute>
+          }>
+          <Route path="admin" element={<Admin />} />
+          <Route path="manage-book" element={<Managebook />} />
+          <Route path="add-book" element={<AddBook />} />
+          <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes> */}
+
         <Footer />
       </BrowserRouter>
     </div>

@@ -9,8 +9,12 @@ import full from "../../assets/full-star.png";
 import "./Books.css";
 
 export default function Books() {
+  { /* collapseable comments function */ }
+  const [collapse, setCollapse] = useState(false);
+  const toggle = () => setCollapse(!collapse);
+
   const { id: documentId } = useParams();
-  console.log(documentId);
+  // console.log(documentId);
 
   const alert = useAlert();
   const [books, setBooks] = useState([]);
@@ -31,6 +35,8 @@ export default function Books() {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user?._id;
   console.log(userId);
+
+  // console.log(user.user.name);
 
   return (
     <div>
@@ -82,7 +88,34 @@ export default function Books() {
                         <Link to={`/documents/${userId}`} className="blog-btn">
                           Read More
                         </Link>
+                        <Link to="" onClick={toggle} className="">
+                          Comments
+                        </Link>
                       </div>
+                      {/* collapseable comments section */}
+                      {collapse ? (
+                        <div className="" id="collapseExample">
+                          <div className="card card-body">
+                            <div className="d-flex justify-content-between">
+                              <textarea></textarea>
+                              <button className="btn btn-info">Save</button>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <div className="d-flex">
+                                <img
+                                  src={user?.user?.profilePic}
+                                  alt=""
+                                  className="rounded-circle w-25"
+                                />
+                                <div className="ml-2">
+                                  <h6>{user?.user?.name}</h6>
+                                  <p className="">Awesome book</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
                     </figcaption>
                   </figure>
                 </div>

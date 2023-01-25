@@ -1,41 +1,3 @@
-// import React, { useEffect } from "react";
-// // const io = require("socket.io-client");
-// import { io } from "socket.io-client";
-// const socket = io.connect("http://localhost:8000");
-
-// export default function TextEditor() {
-//   const [message, SetMessage] = React.useState("");
-//   const [messageRcv, SetMessageRcv] = React.useState("");
-
-//   const sendMessage = () => {
-//     socket.emit("send_message", { message });
-//   };
-
-//   useEffect(() => {
-//     socket.on("recived_message", (data) => {
-//       console.log("data", data);
-//       SetMessageRcv(data.message);
-//     });
-//   }, [socket]);
-
-//   return (
-//     <div>
-//       <h1>Text Editor</h1>
-//       <input
-//         type="text"
-//         value={message}
-//         onChange={(e) => SetMessage(e.target.value)}
-//       />
-//       <button onClick={sendMessage}>Send</button>
-
-//       {/* <div className="mt-5 bg-info">{message}</div> */}
-
-//       <h5>Message: </h5>
-//       <p>{messageRcv}</p>
-//     </div>
-//   );
-// }
-
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useCallback, useEffect, useState } from "react";
@@ -122,7 +84,6 @@ export default function TextEditor() {
 
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
-
     wrapper.innerHTML = "";
     const editor = document.createElement("div");
     wrapper.append(editor);
@@ -134,5 +95,36 @@ export default function TextEditor() {
     q.setText("Loading...");
     setQuill(q);
   }, []);
-  return <div className="container" ref={wrapperRef}></div>;
+
+  const wrapperReff = useCallback((wrapper) => {
+    if (wrapper == null) return;
+    wrapper.innerHTML = "";
+    const editor = document.createElement("div");
+    wrapper.append(editor);
+    const q = new Quill(editor, {
+      theme: "snow",
+      modules: { toolbar: TOOLBAR_OPTIONS },
+    });
+    q.disable();
+    q.setText("Loading...");
+    setQuill(q);
+  }, []);
+
+  return (
+    <div className="">
+      <div className="row">
+        <div className="col-md-6">
+          {/* <div className="p-4" ref={wrapperRef}></div> */}
+        </div>
+        <div className="col-md-6">
+          <div className="p-4">
+            <h4>Note : </h4>
+            <div className="" ref={wrapperReff}></div>
+            {/* <textarea className="form-control" rows="10"></textarea>
+            <button className="btn btn-info m-2 text-light">Save change</button> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

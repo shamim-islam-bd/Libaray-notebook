@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import "./Haeder.scss";
 
@@ -31,12 +31,7 @@ export default function Header() {
 
   return (
     <div className="header">
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        variant="dark"
-        className="bg-color"
-      >
+      <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-color">
         <Container>
           <Navbar.Brand href="/">Libaray</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -53,6 +48,7 @@ export default function Header() {
                 {/* <NavDropdown.Divider /> */}
                 <NavDropdown.Item href="#action/3.4">thelar</NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link href="">Contact</Nav.Link>
             </Nav>
             <Nav>
               {token ? (
