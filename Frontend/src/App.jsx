@@ -15,8 +15,9 @@ import Signup from "./pages/Signup/Signup";
 // import {useParams} from 'react-router-dom'
 import { v4 as uuid } from "uuid";
 import AddBook from "./Dashboard/AddBook/AddBook";
-import NotFound from "./pages/NotFound/NotFound";
 import DashboardMain from "./Dashboard/Dashboard/DashboardMain";
+import BookDetail from "./pages/Books/BookDetail";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   // const { id: documentId } = useParams();
@@ -36,7 +37,14 @@ function App() {
           {/* <Route path="/readmore/:id" element={<SingleBook />} /> */}
           <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-          <Route path="/documents/:id" element={<TextEditor />} />
+          {/* used multiple paramas */}
+          <Route name="documents" path="/documents" element={<BookDetail />}>
+            <Route
+              name="addTaskModal"
+              path="/documents/:id/:bookid"
+              element={<TextEditor />}
+            />
+          </Route>
           <Route
             path="/"
             element={<Navigate replace to={`/documents/${uuid()}`} />}

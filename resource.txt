@@ -1,0 +1,40 @@
+
+Backend
+
+1. Nde.js
+https://nodejs.org
+https://www.youtube.com/results?search_query=nodejs+tuitorial+english
+
+2. Epress js
+https://expressjs.com
+https://www.youtube.com/watch?v=KtnHb7FMk2Q&list=PLp50dWW_m40Vruw9uKGNqySCNFLXK5YiO
+
+3. Mngodb
+Exhttps://expressjs.com
+https://www.youtube.com/watch?v=Ya0H-7A5cE4&list=PLp50dWW_m40UWFSV6PTgYzciZJIxgHy7Q
+
+
+Frontend
+
+
+4. React
+https://reactjs.org/
+
+5. Raect bootstarp
+https://react-bootstrap.github.io/
+
+6. Css
+https://www.w3schools.com/css/
+
+7. Sass 
+* Scss Preprocessor.
+
+8. Quill
+which is used for google docs.
+
+9. React Icon
+https://reat-icons.com
+
+
+
+

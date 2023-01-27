@@ -9,23 +9,26 @@ export default function AddBook() {
   const alert = useAlert();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const bookData = {
+        name : data?.name,
+        author: data?.author,
+        imageLink: data?.imageLink,
+        description: data?.description,
+        category: data?.category,
+        price: data?.price
+      }
+      console.log(bookData);
 
-    try {
       await axios
-        .post("http://localhost:8000/api/books/addBook", data)
+        .post("/api/books/addBook", bookData)
         .then((res) => {
-          console.log(res);
-          // save data in database
-          alert("Book Added Successfully");
+          console.log(res.data);
+          alert.success("Book Added Successfully");
         })
         .catch((err) => {
           console.log(err.message);
           alert.error(err.message);
         });
-    } catch (error) {
-      console.error(error.response.data);
-    }
 
   };
 
@@ -127,7 +130,9 @@ export default function AddBook() {
               </div>
 
               <div className="form-group mb-5">
-                <input type="submit" className="btn btn-primary" />
+                <button type="submit" className="btn btn-primary" >
+                  Add Book
+                </button>
               </div>
             </form>
           </div>

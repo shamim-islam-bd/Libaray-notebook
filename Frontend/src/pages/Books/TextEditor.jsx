@@ -19,7 +19,7 @@ const TOOLBAR_OPTIONS = [
 ];
 
 export default function TextEditor() {
-  const { id: documentId } = useParams();
+  const { id, bookid } = useParams();
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
 
@@ -40,8 +40,8 @@ export default function TextEditor() {
       quill.enable();
     });
 
-    socket.emit("get-document", documentId);
-  }, [socket, quill, documentId]);
+    socket.emit("get-document", id);
+  }, [socket, quill, id]);
 
   useEffect(() => {
     if (socket == null || quill == null) return;
@@ -82,6 +82,20 @@ export default function TextEditor() {
     };
   }, [socket, quill]);
 
+  // const wrapperRef = useCallback((wrapper) => {
+  //   if (wrapper == null) return;
+  //   wrapper.innerHTML = "";
+  //   const editor = document.createElement("div");
+  //   wrapper.append(editor);
+  //   const q = new Quill(editor, {
+  //     theme: "snow",
+  //     modules: { toolbar: TOOLBAR_OPTIONS },
+  //   });
+  //   q.disable();
+  //   q.setText("Loading...");
+  //   setQuill(q);
+  // }, []);
+
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
     wrapper.innerHTML = "";
@@ -96,35 +110,23 @@ export default function TextEditor() {
     setQuill(q);
   }, []);
 
-  const wrapperReff = useCallback((wrapper) => {
-    if (wrapper == null) return;
-    wrapper.innerHTML = "";
-    const editor = document.createElement("div");
-    wrapper.append(editor);
-    const q = new Quill(editor, {
-      theme: "snow",
-      modules: { toolbar: TOOLBAR_OPTIONS },
-    });
-    q.disable();
-    q.setText("Loading...");
-    setQuill(q);
-  }, []);
-
   return (
-    <div className="">
-      <div className="row">
+    <div>
+      <div className="" ref={wrapperRef}></div>
+      {/* <div className="row">
         <div className="col-md-6">
-          {/* <div className="p-4" ref={wrapperRef}></div> */}
+          <div className="p-4" ref={wrapperRef}></div>
         </div>
         <div className="col-md-6">
           <div className="p-4">
             <h4>Note : </h4>
-            <div className="" ref={wrapperReff}></div>
-            {/* <textarea className="form-control" rows="10"></textarea>
-            <button className="btn btn-info m-2 text-light">Save change</button> */}
+            <div className="" ref={wrapperRef}></div>
+            <textarea className="form-control" rows="10"></textarea>
+            <button className="btn btn-info m-2 text-light">Save change</button>
+            
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

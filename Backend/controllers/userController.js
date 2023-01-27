@@ -42,6 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
       user,
     });
 
+    console.log("frm backend: ", user)
 
   } else {
     res.status(400);
@@ -68,7 +69,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("User not found, please signup");
   }
 
-  // User exists, check if password is correct
+  // User exists, check if password is correct.
   const isPassMatched = await bcrypt.compare(password, user.password);
   if(!isPassMatched){
     throw new Error(`invailed email and password`);

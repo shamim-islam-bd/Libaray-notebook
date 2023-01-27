@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { BsArrowDownCircle } from "react-icons/bs";
 import Rating2 from "react-rating";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
 import "./Books.css";
 
 export default function Books() {
-  { /* collapseable comments function */ }
+  {
+    /* collapseable comments function */
+  }
   const [collapse, setCollapse] = useState(false);
   const toggle = () => setCollapse(!collapse);
 
-  const { id: documentId } = useParams();
+  // const { id: documentId } = useParams();
   // console.log(documentId);
 
   const alert = useAlert();
@@ -31,10 +33,10 @@ export default function Books() {
       });
   }, []);
 
-  // geting user id from localstorage bcz this user only edit his documents others can't access his documents.
+  // // geting user id from localstorage bcz this user only edit his documents others can't access his documents.
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user?._id;
-  console.log(userId);
+  console.log("user Id:", userId);
 
   // console.log(user.user.name);
 
@@ -85,9 +87,15 @@ export default function Books() {
                       {/* rating end */}
 
                       <div className="d-flex justify-content-between">
-                        <Link to={`/documents/${userId}`} className="blog-btn">
+                        <Link to={`/documents/${userId}/${book._id}`} className="blog-btn">
                           Read More
                         </Link>
+                        {/* <Link
+                          to={`/documents/${book._id}`}
+                          className="blog-btn"
+                        >
+                          Read More
+                        </Link> */}
                         <Link to="" onClick={toggle} className="">
                           Comments
                         </Link>

@@ -1,10 +1,10 @@
 const express = require("express");
 const { GetAllAdmin, MakeAdmin } = require("../controllers/AdminController");
-const { isAuthenticated, authorizeRoles } = require("../middleWare/authMiddleware");
+const { isAuthenticated, authorizeBy } = require("../middleWare/authMiddleware");
 const router = express.Router();
 
-router.get("/allAdmin", isAuthenticated, authorizeRoles('admin'), GetAllAdmin);
-router.put("/makeAdmin", isAuthenticated, authorizeRoles('admin'), MakeAdmin);
+router.get("/allAdmin", isAuthenticated, authorizeBy('admin'), GetAllAdmin);
+router.put("/makeAdmin", isAuthenticated, authorizeBy('admin'), MakeAdmin);
 
 
 module.exports = router;
