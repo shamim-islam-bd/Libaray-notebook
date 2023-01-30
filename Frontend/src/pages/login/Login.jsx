@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import "./Login.scss";
 
 export default function Login() {
   const alert = useAlert();
@@ -41,7 +42,7 @@ export default function Login() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
             <div className="login-form">
@@ -67,7 +68,7 @@ export default function Login() {
                 <label>Password</label>
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control mb-3"
                   {...register("password", {
                     required: "Email Address is required",
                   })}

@@ -36,14 +36,37 @@ export default function Books() {
   // // geting user id from localstorage bcz this user only edit his documents others can't access his documents.
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user?._id;
-  console.log("user Id:", userId);
+  // console.log("user Id:", userId);
 
-  // console.log(user.user.name);
+  // console.log(user.user.photo);
+
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+
+  const CreateReview = (id) => {
+    console.log(id, rating, comment);
+
+    const data = {
+      rating,
+      comment,
+    };
+
+    axios
+      .post(`/api/books/review/${id}`, data)
+      .then((res) => {
+        console.log(res.data);
+        alert.success("Review added successfully");
+      })
+      .catch((err) => {
+        console.log(err.message);
+        alert.error(err.message);
+      });
+  };
 
   return (
     <div>
       <div className="container pt-5 pb-5">
-        <h4 className="text">#Feathers Books</h4>
+        <h4 className="text"># Features  Books</h4>
 
         <div className="row">
           {books.length > 0
@@ -51,10 +74,13 @@ export default function Books() {
                 <div className="col-md-4 col-sm-6">
                   {/* {console.log(book)} */}
                   <figure class="snip1418">
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdVVX7wQNYzk06uL-gJKmALyTxoJqnUKlBZg&usqp=CAU"
-                      alt="sample85"
-                    />
+                    <div className="imgDiv">
+                      <img
+                        className="bookImg"
+                        src={book?.imageLink}
+                        alt="sample85"
+                      />
+                    </div>
 
                     <figcaption>
                       <div className="d-flex justify-content-between">
@@ -87,7 +113,10 @@ export default function Books() {
                       {/* rating end */}
 
                       <div className="d-flex justify-content-between">
-                        <Link to={`/documents/${userId}/${book._id}`} className="blog-btn">
+                        <Link
+                          to={`/documents/${userId}/${book._id}`}
+                          className="blog-btn"
+                        >
                           Read More
                         </Link>
                         {/* <Link
@@ -97,7 +126,7 @@ export default function Books() {
                           Read More
                         </Link> */}
                         <Link to="" onClick={toggle} className="">
-                          Comments
+                          Reviews
                         </Link>
                       </div>
                       {/* collapseable comments section */}
@@ -105,22 +134,63 @@ export default function Books() {
                         <div className="" id="collapseExample">
                           <div className="card card-body">
                             <div className="d-flex justify-content-between">
-                              <textarea></textarea>
-                              <button className="btn btn-info">Save</button>
-                            </div>
-                            <div className="d-flex justify-content-between">
-                              <div className="d-flex">
-                                <img
-                                  src={user?.user?.profilePic}
-                                  alt=""
-                                  className="rounded-circle w-25"
+                              <div className="">
+                                {/* geting rating from user  */}
+                                <Rating2
+                                  className="rating"
+                                  initialRating={rating}
+                                  fractions={10}
+                                  emptySymbol={
+                                    <img
+                                      src={empty}
+                                      width={4}
+                                      height={4}
+                                      alt=""
+                                    />
+                                  }
+                                  fullSymbol={
+                                    <img
+                                      src={full}
+                                      width={4}
+                                      height={4}
+                                      alt=""
+                                    />
+                                  }
+                                  onChange={(e) => setRating(e)}
                                 />
-                                <div className="ml-2">
-                                  <h6>{user?.user?.name}</h6>
-                                  <p className="">Awesome book</p>
-                                </div>
+
+                                <textarea
+                                  placeholder="Write a review"
+                                  //value={review}
+                                  onChange={(e) => setComment(e.target.value)}
+                                  className="form-control mb-2"
+                                  col="1"
+                                  rows="1"
+                                ></textarea>
+                                <button
+                                  onClick={() => CreateReview(book._id)}
+                                  className="btn btn-info"
+                                >
+                                  Save
+                                </button>
                               </div>
                             </div>
+                            {book?.reviews?.map((review) => (
+                              <div key={review._id} className=" mt-4">
+                                {/* {  console.log(review)} */}
+                                <div className="d-flex">
+                                  <img
+                                    src={user?.user?.photo}
+                                    alt=""
+                                    className="rounded-circle w-25"
+                                  />
+                                  <div>
+                                    <h6>{user?.user?.name}</h6>
+                                    <p className="">{review.review}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ) : null}

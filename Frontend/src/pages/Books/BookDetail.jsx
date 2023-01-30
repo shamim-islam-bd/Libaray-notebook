@@ -34,15 +34,16 @@ export default function BookDetail() {
 
   return (
     <div>
-      <div className="container">
-        <h4>BookDetail</h4>
+      <div className="container mt-4">
+        {/* <h4>BookDetail</h4> */}
         <div className="row">
           <div className="col-md-5">
-            <div className="card">
-                <div className="card-title">
+                <h2 className="card-title mb-4">
                     {book?.name}
-                </div>
-                <p>{book?.description}</p>
+                </h2>
+                <p className="text-muted">Author : {book.author}</p>
+            <div className="bookcard" sticky="top" >
+                <p className="des">{book?.description}</p>
             </div>
           </div>
           <div className="col-md-7">

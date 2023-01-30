@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Books = require("../models/bookModel");
+const Books = require("../schema/bookModel");
 
 // Create Book
 const createBook = asyncHandler(async (req, res) => {
@@ -31,8 +31,10 @@ const createBook = asyncHandler(async (req, res) => {
 
 // Get all Books
 const getBooks = asyncHandler(async (req, res) => {
+  // console.log(req)
   // const books = await Books.find({ user: req.user.id }).sort("-createdAt");
   const books = await Books.find();
+  // console.log(books)
   res.status(200).json(books);
 });
 
@@ -109,12 +111,13 @@ const updateBook = asyncHandler(async (req, res) => {
 
 
 // create user rating and review
-
 const createRatingReview = asyncHandler(async (req, res) => {
   const { rating, review } = req.body;
   const { id } = req.params;
+  console.log(id)
 
   const book = await Books.findById(id);
+  console.log("book: ", book)
 
   // if book doesnt exist
   if (!book) {
@@ -122,12 +125,33 @@ const createRatingReview = asyncHandler(async (req, res) => {
     throw new Error("book not found");
   }
 
-  // Update book
-  const updatedbook = await Books.findByIdAndUpdate( { _id: id }, { rating, review }, { new: true, runValidators: true } );
+   // creating review info in review array 
+  const reviewInfo = {
+    user: req.user.id,
+    name: req.user.name,
+    rating: Number(rating),
+    review,
+  };
+
+  console.log("reviewInfo" ,reviewInfo)
+
+  // book.reviews.push(reviewInfo);
+
+  // calculating average rating
+  book.numReviews = book.reviews.length;
+
+  book.rating = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
+
+  // await book.save();
+
+  //updating book
+  const updatedbook = await Books.findByIdAndUpdate( { _id: id }, { reviews: [...book.reviews, reviewInfo], rating: book.rating, numReviews: book.numReviews }, { new: true, runValidators: true, });
+
+  console.log("updatedbook: ", updatedbook)
 
   res.status(200).json(updatedbook);
-});
 
+});
 
 
 

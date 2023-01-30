@@ -8,10 +8,9 @@ export default function Footer() {
         className="bg-footer page-footer font-small blue pt-2"
         style={{ backgroundColor: "#191d3a", color: "#fff" }}
       >
-
         <div className="footer-copyright text-center py-3">
-          ©2022 Copyright:
-          <h6>Notebook Libaray</h6>
+          ©2023 Copyright:
+          <h6>Notebook Library</h6>
         </div>
       </footer>
     </div>

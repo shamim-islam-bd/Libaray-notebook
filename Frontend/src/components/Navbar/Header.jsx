@@ -33,20 +33,17 @@ export default function Header() {
     <div className="header">
       <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-color">
         <Container>
-          <Navbar.Brand href="/">Libaray</Navbar.Brand>
+          <Navbar.Brand href="/">Library</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#pricing">Books</Nav.Link>
-              <NavDropdown title="Jonra" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  Self-development
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Comic</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Mysrious</NavDropdown.Item>
+              <NavDropdown title="Genre" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.2">CSE</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">EEE</NavDropdown.Item>
                 {/* <NavDropdown.Divider /> */}
-                <NavDropdown.Item href="#action/3.4">thelar</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">BBA</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="">Contact</Nav.Link>
             </Nav>

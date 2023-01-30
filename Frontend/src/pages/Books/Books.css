@@ -134,3 +134,20 @@
 .cursour {
   cursor: pointer;
 }
+
+.imgDiv {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bookImg {
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+img.bookImg {
+  width: 100%;
+  height: 250px;
+}

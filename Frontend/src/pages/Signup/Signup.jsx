@@ -35,7 +35,7 @@ export default function Signup() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container mt-4">
         <div className="row">
           <div className="col-md-6">
             <div className="login-form">
@@ -74,7 +74,7 @@ export default function Signup() {
                 <label>Password</label>
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control mb-3"
                   {...register("password", {
                     required: "Email Address is required",
                   })}
@@ -91,7 +91,7 @@ export default function Signup() {
                   Submit
                 </button>
                 <p className="forgot-password text-right">
-                  <Link to="/register">Register</Link>
+                  <Link to="/signin">Sign in</Link>
                 </p>
               </div>
             </form>

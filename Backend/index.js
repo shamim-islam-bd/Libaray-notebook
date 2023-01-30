@@ -12,14 +12,14 @@ const http = require("http");
 const {Server} = require("socket.io");
 const server = http.createServer(app);
 
-const userRoute = require("./routes/userRoute");
-const bookRoute = require("./routes/bookRoute");
-const AdminRoute = require("./routes/AdminRoute");
-const errorHandler = require("./middleWare/errorMiddleware");
+const userRoute = require("./routes/user");
+const bookRoute = require("./routes/book");
+const AdminRoute = require("./routes/Admin");
+const errorHandler = require("./middlefunction/error");
 const path = require("path");
 
-const Books = require("./models/bookModel");
-const Document = require("./models/documents");
+const Books = require("./schema/bookModel");
+const Document = require("./schema/documents");
 
 
 
@@ -53,36 +53,6 @@ const io = new Server(server, {
   },
 });
 
-// //Whenever someone connects this gets executed
-// io.on('connection', function(socket) {
-//   console.log(`User connected ${socket.id}`);
-
-//   //Whenever someone disconnects this piece of code executed
-//   socket.on('disconnect', function () {
-//      console.log(`User disconnected ${socket.id}`);
-//   });
-
-//   //Whenever someone sends a message this piece of code executed.
-//   socket.on('message', function(message) {
-//     console.log(`Message: ${message}`);
-//     io.emit('message', message);
-//   });
-
-
-//   socket.on("send-changes", delta => {
-//     socket.broadcast.emit("receive-changes", delta)
-//   })
-
-// });
-
-
-
-
-
-
-
-// Routes
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes Middleware
 app.use("/api/users", userRoute);
@@ -104,12 +74,12 @@ app.use(errorHandler);
 
 // here database connection is established & server is started.
 mongoose
-  .connect(process.env.MONGO_CONNECTION)
+  .connect(process.env.MONGODB)
   .then(() => {
     // when socket.io is used with express, we need to pass the server object to socket.io(server) instead of (app) object.
     server.listen(PORT, () => {  
-      console.log("Database connection Succesful");
-      console.log(`Server Running on port ${PORT}`);
+      console.log(`Database connected.`);
+      console.log(`Server on ${PORT}`);
     });
   })
   .catch((err)=>{

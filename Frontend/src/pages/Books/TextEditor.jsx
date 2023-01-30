@@ -40,8 +40,8 @@ export default function TextEditor() {
       quill.enable();
     });
 
-    socket.emit("get-document", id);
-  }, [socket, quill, id]);
+    socket.emit("get-document", bookid);
+  }, [socket, quill, bookid]);
 
   useEffect(() => {
     if (socket == null || quill == null) return;

@@ -27,6 +27,11 @@ const BooksSchema = mongoose.Schema(
       required: [true, "Please add a description"],
       trim: true,
     },
+    reviews: [],
+    numReviews : {
+      type: Number,
+      default: 0,
+    },
     category: {
       type: String,
       required: [true, "Please add a category"],
@@ -37,11 +42,11 @@ const BooksSchema = mongoose.Schema(
       required: [true, "Please add a price"],
       trim: true,
     },
-   BookDocument : {
-    type : Object,
-    default : {},
-    ref : "Document"
-   },
+    BookDocument: {
+      type: Object,
+      default: {},
+      ref: "Document",
+    },
   },
   {
     timestamps: true,

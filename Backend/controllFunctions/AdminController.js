@@ -1,4 +1,4 @@
-const Admin = require("../models/AdminSchema");
+const Admin = require("../schema/AdminSchema");
 
 // Get All Admin -- (( Admin ))
 exports.GetAllAdmin = async (req, res) => {
