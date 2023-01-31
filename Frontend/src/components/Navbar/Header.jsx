@@ -37,8 +37,7 @@ export default function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Books</Nav.Link>
+              <Nav.Link href="feathures">Features</Nav.Link>
               <NavDropdown title="Genre" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.2">CSE</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">EEE</NavDropdown.Item>

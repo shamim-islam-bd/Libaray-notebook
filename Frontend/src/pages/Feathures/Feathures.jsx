@@ -6,11 +6,11 @@ import Rating2 from "react-rating";
 import { Link } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
-import "./Books.css";
+import "./Feathures.css";
 
 // Feathures
 
-export default function Books() {
+export default function Feathures() {
   {
     /* collapseable comments function */
   }
@@ -63,8 +63,8 @@ export default function Books() {
               </div>
             </div>
           </div>
-          {showBooks.length > 0
-            ? showBooks?.map((book) => (
+          {books.length > 0
+            ? books?.map((book) => (
                 <div className="col-md-4 col-sm-6">
                   {/* {console.log(book)} */}
                   <figure class="snip1418">
@@ -178,12 +178,6 @@ export default function Books() {
                 </div>
               ))
             : " "}
-        </div>
-
-        <div className="seeMoreDiv mt-5">
-          <Link to={`/feathures`} className="blog-btn seeMore">
-           All Books
-          </Link>
         </div>
       </div>
     </div>
