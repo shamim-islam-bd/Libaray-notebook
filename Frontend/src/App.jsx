@@ -16,6 +16,7 @@ import DashboardMain from "./Dashboard/Dashboard/DashboardMain";
 import BookDetail from "./pages/Books/BookDetail";
 import NotFound from "./pages/NotFound/NotFound";
 import Feathures from "./pages/Feathures/Feathures";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   // const { id: documentId } = useParams();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/feathures" element={<Feathures />} />
+          <Route path="/contact" element={<Contact />} />
           {/* used multiple paramas */}
           <Route name="documents" path="/documents" element={<BookDetail />}>
             <Route

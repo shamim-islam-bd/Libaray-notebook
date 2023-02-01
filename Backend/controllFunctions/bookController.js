@@ -3,30 +3,38 @@ const Books = require("../schema/bookModel");
 
 // Create Book
 const createBook = asyncHandler(async (req, res) => {
-  const { name, author, imageLink, category, price, description } = req.body;
+  try {
+       console.log("hittng")
+      // const { name, author, imageLink, category, price, description } = req.body;
+     
+      // console.log("hittng", req.body)
+    
+      // //   Validation
+      // if (!name || !author || !category || !price || !description) {
+      //   res.status(400);
+      //   throw new Error("Please fill in all fields");
+      // }
+    
+      // // Create Book
+      // const book = await Books.create({
+      //   user: req.user.id,
+      //   name,
+      //   author,
+      //   imageLink,
+      //   category,
+      //   price,
+      //   description,
+      // });
+    
+      // // console.log(book)
+    
+      // res.status(201).json(book);
 
-  // console.log(req.body)
 
-  //   Validation
-  if (!name || !author || !category || !price || !description) {
-    res.status(400);
-    throw new Error("Please fill in all fields");
-  }
-
-  // Create Book
-  const book = await Books.create({
-    user: req.user.id,
-    name,
-    author,
-    imageLink,
-    category,
-    price,
-    description,
-  });
-
-  // console.log(book)
-
-  res.status(201).json(book);
+     } catch (error) {
+        res.status(error)
+        console.log(error);
+     }
 });
 
 // Get all Books

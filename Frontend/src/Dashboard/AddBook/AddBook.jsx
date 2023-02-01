@@ -9,27 +9,27 @@ export default function AddBook() {
   const alert = useAlert();
 
   const onSubmit = async (data) => {
-    const bookData = {
-        name : data?.name,
-        author: data?.author,
-        imageLink: data?.imageLink,
-        description: data?.description,
-        category: data?.category,
-        price: data?.price
-      }
-      console.log(bookData);
+    // const bookData = {
+      //     name : data?.name,
+      //     author: data?.author,
+      //     imageLink: data?.imageLink,
+      //     description: data?.description,
+      //     category: data?.category,
+      //     price: data?.price
+      //   }
 
-      await axios
-        .post("/api/books/addBook", bookData)
-        .then((res) => {
-          console.log(res.data);
-          alert.success("Book Added Successfully");
-        })
-        .catch((err) => {
-          console.log(err.message);
-          alert.error(err.message);
-        });
+    console.log(data);
 
+    await axios
+      .post("/api/books/addBook", data)
+      .then((res) => {
+        console.log(res.data);
+        alert.success("Book Added Successfully");
+      })
+      .catch((err) => {
+        console.log(err.message);
+        alert.error(err.message);
+      });
   };
 
   return (
@@ -39,7 +39,6 @@ export default function AddBook() {
           <div className="col-md-6">
             <h1>Add Book</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-
               <div className="form-group my-2">
                 {/* <label htmlFor="bookName">Book Name</label> */}
                 <input
@@ -130,7 +129,7 @@ export default function AddBook() {
               </div>
 
               <div className="form-group mb-5">
-                <button type="submit" className="btn btn-primary" >
+                <button type="submit" className="btn btn-primary">
                   Add Book
                 </button>
               </div>

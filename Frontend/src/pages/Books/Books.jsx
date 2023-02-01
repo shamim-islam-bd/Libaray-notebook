@@ -15,7 +15,10 @@ export default function Books() {
     /* collapseable comments function */
   }
   const [collapse, setCollapse] = useState(false);
-  const toggle = () => setCollapse(!collapse);
+  const toggle = (id) => {
+    console.log(id);
+    setCollapse(!collapse);
+  };
 
   // const { id: documentId } = useParams();
   // console.log(documentId);
@@ -113,13 +116,11 @@ export default function Books() {
                         >
                           Read More
                         </Link>
-                        {/* <Link
-                          to={`/documents/${book._id}`}
-                          className="blog-btn"
+                        <Link
+                          to=""
+                          onClick={() => toggle(book._id)}
+                          className=""
                         >
-                          Read More
-                        </Link> */}
-                        <Link to="" onClick={toggle} className="">
                           Reviews
                         </Link>
                       </div>
@@ -182,7 +183,7 @@ export default function Books() {
 
         <div className="seeMoreDiv mt-5">
           <Link to={`/feathures`} className="blog-btn seeMore">
-           All Books
+            All Books
           </Link>
         </div>
       </div>

@@ -39,12 +39,12 @@ export default function Header() {
             <Nav className="me-auto">
               <Nav.Link href="feathures">Features</Nav.Link>
               <NavDropdown title="Genre" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.2">CSE</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">EEE</NavDropdown.Item>
+                <NavDropdown.Item href="feathures">CSE</NavDropdown.Item>
+                <NavDropdown.Item href="feathures">EEE</NavDropdown.Item>
                 {/* <NavDropdown.Divider /> */}
-                <NavDropdown.Item href="#action/3.4">BBA</NavDropdown.Item>
+                <NavDropdown.Item href="feathures">BBA</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="">Contact</Nav.Link>
+              <Nav.Link href="contact">Contact</Nav.Link>
             </Nav>
             <Nav>
               {token ? (
