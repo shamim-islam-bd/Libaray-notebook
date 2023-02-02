@@ -3,7 +3,7 @@
 exports.sendToken = (user, res, statusCode) => {
     // Create jwt token.
     const token = user.getJwtToken();
-    // console.log('token from getjwtToken: ', token);
+    console.log('token from getjwtToken: ', token);
 
     // Options for cookie.
     const options = {

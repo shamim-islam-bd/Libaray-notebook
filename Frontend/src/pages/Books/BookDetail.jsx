@@ -24,7 +24,7 @@ export default function BookDetail() {
     axios
       .post(`/api/books/review/${id}`, data)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         alert.success("Review added successfully");
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ export default function BookDetail() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [id]);
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user?._id;

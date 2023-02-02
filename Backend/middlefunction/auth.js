@@ -17,6 +17,8 @@ exports.isAuthenticated =  asyncHandler(async (req, res, next) => {
           const decoded = jwt.verify(token, process.env.JWT_SECRET);
           const user = await User.findById(decoded.id);
 
+          console.log("user frm Auth midlwre: ",user);
+
           // check user is exist or not on database.
           if(!user){
               throw new Error("Not authorized, please login");

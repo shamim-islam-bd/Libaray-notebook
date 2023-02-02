@@ -117,10 +117,11 @@ const createRatingReview = asyncHandler(async (req, res) => {
 
 
   const { id } = req.params;
-  console.log(id)
+  console.log("id: ", id)
+  console.log("user: ", req.user)
 
   const book = await Books.findById(id);
-  // console.log("book: ", book)
+  // console.log("book review : ", book.review)
 
   // if book doesnt exist
   if (!book) {
@@ -130,27 +131,23 @@ const createRatingReview = asyncHandler(async (req, res) => {
 
    // creating review info in review array 
   const reviewInfo = {
-    user: req.user.id,
-    name: req.user.name,
+    // user: req.user?.id,
+    // name: req.user?.name,
     rating: Number(rating),
     review,
   };
 
   console.log("reviewInfo" ,reviewInfo)
 
-  book.reviews.push(reviewInfo);
-
   // calculating average rating
-  // book.numReviews = book.reviews.length;
+  book.numReviews = book.reviews.length;
 
-  // book.rating = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
-
-  await book.save();
+  book.rating = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
 
   //updating book
   const updatedbook = await Books.findByIdAndUpdate( { _id: id }, { reviews: [...book.reviews, reviewInfo], rating: book.rating, numReviews: book.numReviews }, { new: true, runValidators: true, });
 
-  console.log("updatedbook: ", updatedbook)
+  // console.log("updatedbook: ", updatedbook)
 
   res.status(200).json(updatedbook);
 

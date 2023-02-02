@@ -4,7 +4,7 @@ const { getBooks,getBook, deleteBook, updateBook, createRatingReview, createBook
 const { isAuthenticated, authorizeBy } = require("../middlefunction/auth");
 
 router.get("/", getBooks);
-router.post("/addBook", createBook);
+router.post("/addBook",  createBook);
 router.post("/review/:id", createRatingReview);
 router.patch("/update/:id", isAuthenticated, updateBook);
 router.get("/singleBook/:id", isAuthenticated, getBook);
