@@ -5,14 +5,16 @@ import { useParams } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
 import TextEditor from "./TextEditor";
+import { useAlert } from "react-alert";
 
 export default function BookDetail() {
+  const alert = useAlert();
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
   const CreateReview = (id) => {
-    console.log(id, rating, comment);
+    console.log(rating, comment);
     const data = {
       rating,
       comment,
@@ -50,8 +52,8 @@ export default function BookDetail() {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user?._id;
 
-  console.log("user id:", id, userId, "-localStr");
-  console.log("bookid: ", bookid);
+  // console.log("user id:", id, userId, "-localStr");
+  // console.log("bookid: ", bookid);
 
   return (
     <div>
