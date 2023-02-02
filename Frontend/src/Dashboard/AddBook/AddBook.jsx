@@ -2,8 +2,10 @@ import axios from "axios";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function AddBook() {
+  const navigate = useNavigate();
   //react hook form
   const { register, handleSubmit, errors } = useForm();
   const alert = useAlert();
@@ -22,10 +24,12 @@ export default function AddBook() {
 
     try {
       await axios
-        .post("http://localhost:8000/api/books/addBook", data)
+        .post("/api/books/addBook", data)
         .then((res) => {
           console.log(res.data);
           alert.success("Book Added Successfully");
+
+          navigate("/feathures");
         })
         .catch((err) => {
           console.log(err.message);

@@ -1,29 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import Rating2 from "react-rating";
 import { useParams } from "react-router-dom";
 import empty from "../../assets/empty.png";
 import full from "../../assets/full-star.png";
 import TextEditor from "./TextEditor";
-import { useAlert } from "react-alert";
 
 export default function BookDetail() {
   const alert = useAlert();
 
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [review, setReview] = useState("");
 
   const CreateReview = (id) => {
-    console.log(rating, comment);
+    console.log(id);
+    console.log(rating, review);
     const data = {
       rating,
-      comment,
+      review,
     };
 
     axios
       .post(`/api/books/review/${id}`, data)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         alert.success("Review added successfully");
       })
       .catch((err) => {
@@ -87,7 +88,7 @@ export default function BookDetail() {
                     <textarea
                       placeholder="Write a review"
                       //value={review}
-                      onChange={(e) => setComment(e.target.value)}
+                      onChange={(e) => setReview(e.target.value)}
                       className="form-control mb-2"
                       col="1"
                       rows="1"

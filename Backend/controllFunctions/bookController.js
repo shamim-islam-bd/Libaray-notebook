@@ -3,38 +3,30 @@ const Books = require("../schema/bookModel");
 
 // Create Book
 const createBook = asyncHandler(async (req, res) => {
-  console.log("hittng")
-  try {
-      // const { name, author, imageLink, category, price, description } = req.body;
+      const { name, author, imageLink, category, price, description } = req.body;
      
       // console.log("hittng", req.body)
     
-      // //   Validation
-      // if (!name || !author || !category || !price || !description) {
-      //   res.status(400);
-      //   throw new Error("Please fill in all fields");
-      // }
+      //   Validation
+      if (!name || !author || !category || !price || !description) {
+        res.status(400);
+        throw new Error("Please fill in all fields");
+      }
     
-      // // Create Book
-      // const book = await Books.create({
-      //   user: req.user.id,
-      //   name,
-      //   author,
-      //   imageLink,
-      //   category,
-      //   price,
-      //   description,
-      // });
+      // Create Book
+      const book = await Books.create({
+        // user: req.user.id,
+        name,
+        author,
+        imageLink,
+        category,
+        price,
+        description,
+      });
     
-      // // console.log(book)
+      // console.log(book)
     
-      // res.status(201).json(book);
-
-
-     } catch (error) {
-        res.status(error)
-        console.log(error);
-     }
+      res.status(201).json(book);
 });
 
 // Get all Books
@@ -121,11 +113,14 @@ const updateBook = asyncHandler(async (req, res) => {
 // create user rating and review
 const createRatingReview = asyncHandler(async (req, res) => {
   const { rating, review } = req.body;
+  console.log("htiing review", rating, review)
+
+
   const { id } = req.params;
   console.log(id)
 
   const book = await Books.findById(id);
-  console.log("book: ", book)
+  // console.log("book: ", book)
 
   // if book doesnt exist
   if (!book) {
@@ -143,14 +138,14 @@ const createRatingReview = asyncHandler(async (req, res) => {
 
   console.log("reviewInfo" ,reviewInfo)
 
-  // book.reviews.push(reviewInfo);
+  book.reviews.push(reviewInfo);
 
   // calculating average rating
-  book.numReviews = book.reviews.length;
+  // book.numReviews = book.reviews.length;
 
-  book.rating = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
+  // book.rating = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
 
-  // await book.save();
+  await book.save();
 
   //updating book
   const updatedbook = await Books.findByIdAndUpdate( { _id: id }, { reviews: [...book.reviews, reviewInfo], rating: book.rating, numReviews: book.numReviews }, { new: true, runValidators: true, });
