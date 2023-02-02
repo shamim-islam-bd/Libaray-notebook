@@ -10,26 +10,30 @@ export default function AddBook() {
 
   const onSubmit = async (data) => {
     // const bookData = {
-      //     name : data?.name,
-      //     author: data?.author,
-      //     imageLink: data?.imageLink,
-      //     description: data?.description,
-      //     category: data?.category,
-      //     price: data?.price
-      //   }
+    //     name : data?.name,
+    //     author: data?.author,
+    //     imageLink: data?.imageLink,
+    //     description: data?.description,
+    //     category: data?.category,
+    //     price: data?.price
+    //   }
 
     console.log(data);
 
-    await axios
-      .post("/api/books/addBook", data)
-      .then((res) => {
-        console.log(res.data);
-        alert.success("Book Added Successfully");
-      })
-      .catch((err) => {
-        console.log(err.message);
-        alert.error(err.message);
-      });
+    try {
+      await axios
+        .post("http://localhost:8000/api/books/addBook", data)
+        .then((res) => {
+          console.log(res.data);
+          alert.success("Book Added Successfully");
+        })
+        .catch((err) => {
+          console.log(err.message);
+          alert.error(err.message);
+        });
+    } catch (error) {
+      console.log(error?.message);
+    }
   };
 
   return (
@@ -40,7 +44,6 @@ export default function AddBook() {
             <h1>Add Book</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group my-2">
-                {/* <label htmlFor="bookName">Book Name</label> */}
                 <input
                   type="name"
                   className="form-control"
@@ -55,7 +58,6 @@ export default function AddBook() {
               </div>
 
               <div className="form-group my-2">
-                {/* <label htmlFor="author">Author Name</label> */}
                 <input
                   type="author"
                   className="form-control"
@@ -70,7 +72,6 @@ export default function AddBook() {
               </div>
 
               <div className="form-group my-2">
-                {/* <label htmlFor="imageLink">Book Image Link</label> */}
                 <input
                   type="imageLink"
                   className="form-control"
@@ -85,7 +86,6 @@ export default function AddBook() {
               </div>
 
               <div className="form-group my-2">
-                {/* <label htmlFor="description">Description</label> */}
                 <textarea
                   className="form-control"
                   {...register("description", {
@@ -99,7 +99,6 @@ export default function AddBook() {
               </div>
 
               <div className="form-group my-2">
-                {/* <label htmlFor="category">Category</label> */}
                 <input
                   type="category"
                   className="form-control"
@@ -114,7 +113,6 @@ export default function AddBook() {
               </div>
 
               <div className="form-group my-2">
-                {/* <label htmlFor="price">Price</label> */}
                 <input
                   type="price"
                   className="form-control"

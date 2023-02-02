@@ -68,7 +68,7 @@ export default function Books() {
           </div>
           {showBooks.length > 0
             ? showBooks?.map((book) => (
-                <div className="col-md-4 col-sm-6">
+                <div className="col-md-4 col-sm-6" key={book._id}>
                   {/* {console.log(book)} */}
                   <figure class="snip1418">
                     <div className="imgDiv">

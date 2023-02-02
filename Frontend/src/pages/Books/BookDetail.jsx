@@ -64,7 +64,6 @@ export default function BookDetail() {
             <div className="bookcard" sticky="top">
               <p className="des">{book?.description}</p>
             </div>
-
             <div className="mb-5" id="collapseExample">
               <div className="card card-body">
                 <div className="d-flex justify-content-between">

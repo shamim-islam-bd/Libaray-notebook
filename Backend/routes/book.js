@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {createBook, getBooks,getBook, deleteBook, updateBook, createRatingReview} = require("../controllFunctions/bookController");
+const { getBooks,getBook, deleteBook, updateBook, createRatingReview, createBook} = require("../controllFunctions/bookController");
 const { isAuthenticated, authorizeBy } = require("../middlefunction/auth");
 
 router.get("/", getBooks);

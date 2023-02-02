@@ -3,8 +3,8 @@ const Books = require("../schema/bookModel");
 
 // Create Book
 const createBook = asyncHandler(async (req, res) => {
+  console.log("hittng")
   try {
-       console.log("hittng")
       // const { name, author, imageLink, category, price, description } = req.body;
      
       // console.log("hittng", req.body)
